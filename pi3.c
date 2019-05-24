@@ -3,7 +3,8 @@
 #include <mysql/mysql.h>
 
 #include "pi3.h"
-//  teste
+//  teste romildo
+
 int ConectaDB(){
 	MYSQL conexao;
     MYSQL_RES *resp;
