@@ -3,7 +3,7 @@
 #include <mysql/mysql.h>
 
 #include "pi3.h"
-//  teste romildo
+//  teste romildo eltera novamente
 
 int ConectaDB(){
 	MYSQL conexao;
