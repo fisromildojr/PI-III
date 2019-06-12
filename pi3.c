@@ -13,8 +13,9 @@ int ConectaDB(){
 
     mysql_init(&conexao);
 
-    if ( !mysql_real_connect(&conexao, "localhost", "root", "123456", "pi3", 0, NULL, 0) )
+    if ( !mysql_real_connect(&conexao, "localhost", "pi3", "as", "pi3", 0, NULL, 0) ){
     	return 0; //Se falhar retorna 0
+    }
 
     return 1; //Se funcionar retorna 1
 }
