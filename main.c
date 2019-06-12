@@ -10,7 +10,7 @@ int main(int argc, char const *argv[]){
 	--int x;
 	--printf(" Qual e o seu nome\n");
 	--scanf ("%i",&x);
-
+//Claudinei
 
 
 
