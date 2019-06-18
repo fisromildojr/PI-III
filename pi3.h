@@ -10,6 +10,8 @@ typedef struct TipoFuncionario{
 
 int ConectaDB();
 
+void Cabecalho();
+
 void InserirFuncionario();
 
 void CadastrarCartaoPonto();

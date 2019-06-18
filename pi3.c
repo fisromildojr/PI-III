@@ -20,6 +20,10 @@ int ConectaDB(){
     return 1; //Se funcionar retorna 1
 }
 
+void Cabecalho(){
+	
+}
+
 void InserirFuncionario(){
 
 }
