@@ -8,7 +8,7 @@ typedef struct TipoFuncionario{
 	char UF[3];
 } TipoFuncionario;
 
-int ConectaDB();
+//int ConectaDB();
 
 void Cabecalho();
 
