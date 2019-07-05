@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <mysql/mysql.h>
+
 typedef struct TipoFuncionario{
 	char Nome[100];
 	float Descontos;
@@ -8,11 +13,13 @@ typedef struct TipoFuncionario{
 	char UF[3];
 } TipoFuncionario;
 
-//int ConectaDB();
+void ConectaDB(MYSQL conexao);
 
-void Cabecalho();
+void Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void InserirFuncionario();
+void MenuPrincipal(conexao, resp, linhas, campos);
+
+void InserirFuncionario(conexao, resp, linhas, campos);
 
 void CadastrarCartaoPonto();
 
