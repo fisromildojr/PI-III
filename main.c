@@ -17,6 +17,7 @@ int main(int argc, char const *argv[]){
     if ( !mysql_real_connect(&conexao, "localhost", "root", "123456", "pi3", 0, NULL, 0) ){
         // Se não estabelecer conexão segue aqui!!!
         printf("Conexão com o banco de dados falhou...\n");
+        //Teste alteração 2
         mysql_close(&conexao);
         return 0;
     }else{
