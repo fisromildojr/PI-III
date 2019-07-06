@@ -6,7 +6,7 @@
 typedef struct TipoFuncionario{
 	char Nome[100];
 	float Descontos;
-	char Telefone[15];
+	char Telefone[15];// tel
 	char Endereco[200];
 	char Bairro[30];
 	char Cidade[30];
