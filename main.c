@@ -14,7 +14,7 @@ int main(int argc, char const *argv[]){
     MYSQL_FIELD *campos;
 
     mysql_init(&conexao);
-    if ( !mysql_real_connect(&conexao, "localhost", "root", "123456", "pi3", 0, NULL, 0) ){
+    if ( !mysql_real_connect(&conexao, "localhost", "userpi3", "pi3_123", "pi3", 0, NULL, 0) ){
         // Se não estabelecer conexão segue aqui!!!
         printf("Conexão com o banco de dados falhou...\n");
         //Teste alteração 2

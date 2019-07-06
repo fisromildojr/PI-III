@@ -4,15 +4,15 @@
 #include <mysql/mysql.h>
 
 #include "pi3.h"
-
+/*
 void ConectaDB(MYSQL conexao){
 	mysql_init(&conexao);
-	if ( !mysql_real_connect(&conexao, "localhost", "root", "Rjalves2011*", "pi3", 0, NULL, 0) ){
+	if ( !mysql_real_connect(&conexao, "localhost", "root", "123456", "pi3", 0, NULL, 0) ){
     	// Se não estabelecer conexão segue aqui!!!
 		return;
     }
 }
-
+*/
 void Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos){
     char sql[200];
     int Qtd;
