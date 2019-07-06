@@ -17,9 +17,9 @@ void ConectaDB(MYSQL conexao);
 
 void Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void MenuPrincipal(conexao, resp, linhas, campos);
+void MenuPrincipal();
 
-void InserirFuncionario(conexao, resp, linhas, campos);
+void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
 void CadastrarCartaoPonto();
 

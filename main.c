@@ -14,21 +14,42 @@ int main(int argc, char const *argv[]){
     MYSQL_FIELD *campos;
 
     mysql_init(&conexao);
-    if ( !mysql_real_connect(&conexao, "localhost", "root", "Rjalves2011*", "teste1", 0, NULL, 0) ){
+    if ( !mysql_real_connect(&conexao, "localhost", "userpi3", "pi3_123", "pi3", 0, NULL, 0) ){
         // Se não estabelecer conexão segue aqui!!!
         printf("Conexão com o banco de dados falhou...\n");
+        mysql_close(&conexao);
         return 0;
     }else{
-        //Inclusão do Cabeçalho
-        Cabecalho(conexao, resp, linhas, campos);
+        
+        int Op;
 
-        //Inclusão do menu
-        MenuPrincipal(conexao, resp, linhas, campos);
+        //Cabecalho(conexao, resp, linhas, campos);
 
+        MenuPrincipal();
+        scanf("%i", &Op);
+        setbuf(stdin,NULL);
 
+            printf("\n%d\n", Op);
 
+        switch(Op){
+            case 1:
+                //Cabecalho(conexao, resp, linhas, campos);
+                InserirFuncionario(conexao, resp, linhas, campos);
 
+            break;
+            case 2:
 
+            break;
+            case 3:
+
+            break;
+            case 4:
+
+            break;
+            default:
+                printf("Opcao invalida...\n");
+            break;
+        }
 
     }
 

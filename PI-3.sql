@@ -4,12 +4,13 @@ create database pi3;
 
 USE pi3;
 CREATE TABLE usuario(
-id integer not null primary key,
+id integer not null primary key auto_increment,
 nome  varchar (50) not null,
 login varchar (20) not null,
 senha varchar (20) not null,
 nivel integer not null);
 
+/*
 CREATE TABLE empresa(
 id integer not null primary key,
 cnpj  varchar (20) not null,
@@ -30,32 +31,29 @@ id integer not null primary key,
 nome varchar (30) not null,
 id_tab_departamento integer not null,
 constraint fk_centrocusto_departamento foreign key (id_tab_departamento) references centrocusto(id));
-
-CREATE TABLE datainicial(
-id integer not null primary key,
-datafinal date not null);
+*/
 
 CREATE TABLE cargo(
-id integer not null primary key,
+id integer not null primary key auto_increment,
 nome varchar (30) not null,
 salario numeric (6.2) not null);
 
 CREATE TABLE periodo(
-id integer not null primary key,
+id integer not null primary key auto_increment,
 tipodia varchar (1) not null,
 datainicial date not null,
 datafinal date not null);
 
 CREATE TABLE funcionario(
-id integer not null primary key,
-nome varchar (50) not null,
-telefone integer not null,
-endereco varchar (20) not null,
-bairro varchar (20) not null,
-cidade varchar (15) not null,
-uf varchar (2) not null,
-id_tab_centrocusto integer not null,
-constraint fk_funcionario_centrocusto foreign key (id_tab_centrocusto) references centrocusto(id));
+id integer not null primary key auto_increment,
+nome varchar (100) not null,
+telefone varchar (15) not null,
+endereco varchar (200) not null,
+bairro varchar (30) not null,
+cidade varchar (30) not null,
+uf varchar (3) not null);
+/*id_tab_centrocusto integer not null,*/
+/*constraint fk_funcionario_centrocusto foreign key (id_tab_centrocusto) references centrocusto(id));*/
 
 CREATE TABLE controlehoras(
 data1 date not null,
@@ -90,7 +88,7 @@ constraint fk_ocupa_funcionario foreign key (id_tab_funcionario) references func
 constraint fk_ocupa_cargo foreign key (id_tab_cargo) references cargo(id),
 primary key (datainicial,id_tab_funcionario,id_tab_cargo));
 
-
+/*
 select * from usuario;
 select * from empresa;
 select * from departamento;
@@ -101,11 +99,13 @@ select * from controlehoras;
 select * from cargo;
 select * from ocupa;
 select * from controlehoras;
+*/
 
-INSERT INTO usuario VALUES (01,'LOURIVAL VICENTE DA SILVA JUNIOR','LOURIVAL','123456789',1);
-INSERT INTO usuario VALUES (02,'ROMILDO ALVES DE SOUZA JUNIOR','ROMILDO','123456789',2);
-INSERT INTO usuario VALUES (03,'MAIDSON MATEUS SILVA SOUZA','MAIDSON','123456789',3);
+INSERT INTO usuario VALUES (null,'LOURIVAL VICENTE DA SILVA JUNIOR','LOURIVAL','123456789',1);
+INSERT INTO usuario VALUES (null,'ROMILDO ALVES DE SOUZA JUNIOR','ROMILDO','123456789',2);
+INSERT INTO usuario VALUES (null,'MAIDSON MATEUS SILVA SOUZA','MAIDSON','123456789',3);
 
+/*
 INSERT INTO empresa VALUES (01,'111111111','VIA RADIO', 'STATUS EQUIPAMENTO DE TELECOM LTDA',11112222);
 INSERT INTO empresa VALUES (02,'222222222','BRASILAGRO', 'COMPANHIA DE SERVICO E RURAL LTDA',22223333);
 INSERT INTO empresa VALUES (03,'333333333','MUNDO INFORMATICA', 'PRESTAÇAO DE SERVIÇO E VENDA TECNOLOGIA',33334444);
@@ -129,18 +129,19 @@ INSERT INTO centrocusto VALUES (05,'444-MAQUINAS',03);
 INSERT INTO centrocusto VALUES (06,'555-ADUBO',02);
 INSERT INTO centrocusto VALUES (07,'666-DOENÇA',01);
 INSERT INTO centrocusto VALUES (08,'777-FINANCEIRO',01);
+*/
 
-INSERT INTO periodo VALUES (01,'F',20190506,20190531);
-INSERT INTO periodo VALUES (02,'N',20190606,20190606);
-INSERT INTO periodo VALUES (03,'N',20190706,20190731);
+INSERT INTO periodo VALUES (null,'F',20190506,20190531);
+INSERT INTO periodo VALUES (null,'N',20190606,20190606);
+INSERT INTO periodo VALUES (null,'N',20190706,20190731);
 
-INSERT INTO funcionario VALUES (01,'LOURIVAL JUNIOR',36368239,'RUA ANGICO 88','FLORESTA','JATAI','GO',01);
-INSERT INTO funcionario VALUES (02,'ROMILDO JUNIOR',36361400,'RUA MINAS 101','FATIMA','JATAI','GO',02);
-INSERT INTO funcionario VALUES (03,'MAISDON MATEUS',36361300,'RUA ROTA 123','ANTENA','JATAI','GO',03);
+INSERT INTO funcionario VALUES (NULL,'LOURIVAL JUNIOR',36368239,'RUA ANGICO 88','FLORESTA','JATAI','GO');
+INSERT INTO funcionario VALUES (null,'ROMILDO JUNIOR',36361400,'RUA MINAS 101','FATIMA','JATAI','GO');
+INSERT INTO funcionario VALUES (null,'MAISDON MATEUS',36361300,'RUA ROTA 123','ANTENA','JATAI','GO');
 
-INSERT INTO cargo VALUES (01,'ELETRICISTA',2300.00);
-INSERT INTO cargo VALUES (02,'ANALISTA RH',2000.00);
-INSERT INTO cargo VALUES (03,'SERVICOGERAIS',2100.00);
+INSERT INTO cargo VALUES (null,'ELETRICISTA',2300.00);
+INSERT INTO cargo VALUES (null,'ANALISTA RH',2000.00);
+INSERT INTO cargo VALUES (null,'SERVICOGERAIS',2100.00);
 
 INSERT INTO ocupa VALUES (20190101,20190130,01,01,500.00);
 INSERT INTO ocupa VALUES (20190101,20190130,02,02,500.00);
