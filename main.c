@@ -24,14 +24,10 @@ int main(int argc, char const *argv[]){
         int Op;
         if(Cabecalho(conexao, resp, linhas, campos, Op)){
 
-
-
             MenuPrincipal();
             printf("\n--> ");
             scanf("%i", &Op);
             setbuf(stdin,NULL);
-
-                printf("\n%d\n", Op);
 
             switch(Op){
                 case 1:
@@ -39,14 +35,13 @@ int main(int argc, char const *argv[]){
                     InserirFuncionario(conexao, resp, linhas, campos);
                 break;
                 case 2:
-                    ExibirCargo(conexao, resp, linhas, campos);
-                    //ExibirFuncionario(conexao, resp, linhas, campos);
+                    ExibirFuncionario(conexao, resp, linhas, campos);
                 break;
                 case 3:
                     LancarHoras(conexao, resp, linhas, campos);
                 break;
                 case 4:
-
+                    
                 break;
                 default:
                     printf("Opcao invalida...\n");
