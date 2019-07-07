@@ -17,41 +17,44 @@ int main(int argc, char const *argv[]){
     if ( !mysql_real_connect(&conexao, "localhost", "userpi3", "pi3_123", "pi3", 0, NULL, 0) ){
         // Se não estabelecer conexão segue aqui!!!
         printf("Conexão com o banco de dados falhou...\n");
-        //Teste alteração
+        //Teste alteração 2
         mysql_close(&conexao);
         return 0;
     }else{
-        
         int Op;
+        if(Cabecalho(conexao, resp, linhas, campos, Op)){
 
-        //Cabecalho(conexao, resp, linhas, campos);
 
-        MenuPrincipal();
-        scanf("%i", &Op);
-        setbuf(stdin,NULL);
 
-            printf("\n%d\n", Op);
+            MenuPrincipal();
+            printf("\n--> ");
+            scanf("%i", &Op);
+            setbuf(stdin,NULL);
 
-        switch(Op){
-            case 1:
-                //Cabecalho(conexao, resp, linhas, campos);
-                InserirFuncionario(conexao, resp, linhas, campos);
+                printf("\n%d\n", Op);
 
-            break;
-            case 2:
+            switch(Op){
+                case 1:
+                    //Cabecalho(conexao, resp, linhas, campos);
+                    InserirFuncionario(conexao, resp, linhas, campos);
+                break;
+                case 2:
+                    ExibirCargo(conexao, resp, linhas, campos);
+                    //ExibirFuncionario(conexao, resp, linhas, campos);
+                break;
+                case 3:
+                    LancarHoras(conexao, resp, linhas, campos);
+                break;
+                case 4:
 
-            break;
-            case 3:
-
-            break;
-            case 4:
-
-            break;
-            default:
-                printf("Opcao invalida...\n");
-            break;
+                break;
+                default:
+                    printf("Opcao invalida...\n");
+                break;
+            }
+        }else{
+            system("exit");
         }
-
     }
 
 	return 0;
