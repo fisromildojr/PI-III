@@ -17,7 +17,6 @@ cnpj  varchar (20) not null,
 nomefantasia varchar (50) not null,
 razaosocial varchar (50) not null,
 insmunicipal integer not null);
-
 CREATE TABLE departamento(
 id integer not null primary key,
 nome varchar (50) not null,
@@ -25,7 +24,6 @@ cidade varchar (50) not null,
 uf varchar (2) not null,
 id_tab_empresa integer not null,
 constraint fk_departamento_empresa foreign key (id_tab_empresa) references empresa(id));
-
 CREATE TABLE centrocusto(
 id integer not null primary key,
 nome varchar (30) not null,
@@ -40,7 +38,6 @@ salario numeric (6.2) not null);
 
 CREATE TABLE periodo(
 id integer not null primary key auto_increment,
-tipodia varchar (1) not null,
 datainicial date not null,
 datafinal date not null);
 
@@ -69,7 +66,7 @@ id_tab_periodo integer not null,
 id_tab_funcionario integer not null,
 constraint fk_controlehoras_periodo foreign key (id_tab_periodo) references periodo(id),
 constraint fk_controlehoras_funcionario foreign key (id_tab_funcionario) references funcionario(id),
-primary key (data1,id_tab_periodo, id_tab_funcionario));
+primary key (data1,id_tab_periodo, id_tab_funcionario, data1));
 
 CREATE TABLE gasto(
 datagasto date not null,
@@ -79,8 +76,8 @@ constraint fk_gasto_funcionario foreign key (id_tab_funcionario) references func
 primary key (datagasto,id_tab_funcionario));
 
 CREATE TABLE ocupa(
-datainicial date not null,
-datafinal date not null,
+datainicial datetime not null,
+datafinal datetime,
 id_tab_funcionario integer not null,
 id_tab_cargo integer not null,
 adicional numeric (6.2),
@@ -109,19 +106,15 @@ INSERT INTO usuario VALUES (null,'MAIDSON MATEUS SILVA SOUZA','MAIDSON','1234567
 INSERT INTO empresa VALUES (01,'111111111','VIA RADIO', 'STATUS EQUIPAMENTO DE TELECOM LTDA',11112222);
 INSERT INTO empresa VALUES (02,'222222222','BRASILAGRO', 'COMPANHIA DE SERVICO E RURAL LTDA',22223333);
 INSERT INTO empresa VALUES (03,'333333333','MUNDO INFORMATICA', 'PRESTAÇAO DE SERVIÇO E VENDA TECNOLOGIA',33334444);
-
 INSERT INTO departamento VALUES (01,'FINANCEIRO','JATAI', 'GO',01);
 INSERT INTO departamento VALUES (02,'VENDA','JATAI', 'GO',01);
 INSERT INTO departamento VALUES (03,'ALMOXARIFADO','RIO VERDE', 'GO',01);
-
 INSERT INTO departamento VALUES (04,'COMPRAS','JATAI', 'GO',02);
 INSERT INTO departamento VALUES (05,'AGRICOLA','MINEIRO', 'GO',02);
 INSERT INTO departamento VALUES (06,'FABRICA','URUACU', 'MT',02);
-
 INSERT INTO departamento VALUES (07,'GESTAO','JATAI', 'GO',03);
 INSERT INTO departamento VALUES (08,'RH','GOIANIA', 'GO',03);
 INSERT INTO departamento VALUES (09,'VENDA','APARECIDA', 'GO',03);
-
 INSERT INTO centrocusto VALUES (01,'111-EPI',01);
 INSERT INTO centrocusto VALUES (02,'222-LAVANDARIA',02);
 INSERT INTO centrocusto VALUES (03,'333-MARCAÇAO',03);
