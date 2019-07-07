@@ -137,7 +137,7 @@ void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_
 
     //    printf("QUERY: %s\n", sql);
         system("clear");
-        printf("<<< DADOS DO FUNCIONARIO >>>\n\n");
+/*        printf("<<< DADOS DO FUNCIONARIO >>>\n\n");
         printf("\nNOME FUNCIONARIO: %s\n", funcionario.Nome);
         printf("TELEFONE FUNCIONARIO: %s\n", funcionario.Telefone);
         printf("ENDERECO FUNCIONARIO: %s\n", funcionario.Endereco);
@@ -145,11 +145,16 @@ void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_
         printf("CIDADE FUNCIONARIO: %s\n", funcionario.Cidade);
         printf("UF FUNCIONARIO: %s\n\n", funcionario.UF);
 
+        printf("\n\nPressione qualquer tecla para continuar...\n");
+        getchar();
+        setbuf(stdin,NULL);
+*/
         mysql_query(&conexao, sql);
 
         if(mysql_affected_rows(&conexao) != 1){
-            printf("Erro: Nao foi possivel cadastrar o funcionario\n\n");
-            printf("Pressione qualquer tecla para continuar...\n");
+            printf("\nErro: Nao foi possivel cadastrar o funcionario\n\n");
+            printf("\nPressione qualquer tecla para continuar...\n");
+            setbuf(stdin,NULL);
             getchar();
         }else{
 
@@ -166,14 +171,16 @@ void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_
             scanf("%i", &IdCargo);
             setbuf(stdin,NULL);
 
-            printf("Informe a data que o usuario iniciou no Cargo (DD-MM-AAAA) -> ");
+            printf("\nInforme a data que o usuario iniciou no Cargo (DD-MM-AAAA) -> ");
             fgets(dtCargo,12,stdin);
             dtCargo[strlen(dtCargo)-1] = '\0';
 
+/*
             printf("\n\n");
             printf("ID Funcionario = %d\n", IdFuncionario);
             printf("ID Cargo = %d\n", IdCargo);
             printf("Data Inicio = %s\n", dtCargo);
+*/
 
             sprintf(StrIdFuncionario,"%d",IdFuncionario);
             sprintf(StrIdCargo,"%d",IdCargo);
@@ -190,11 +197,11 @@ void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_
             //printf("\nSQL = %s\n", sql);
 
             if(mysql_affected_rows(&conexao) != 1){
-                printf("Erro: Nao foi possivel cadastrar o funcionario\n\n");
+                printf("\nErro: Nao foi possivel cadastrar o funcionario\n\n");
                 printf("Pressione qualquer tecla para continuar...\n");
                 getchar();
             }else{
-                printf("Funcionario cadastrado com sucesso!!!\n\n");
+                printf("\nFuncionario cadastrado com sucesso!!!\n\n");
                 printf("1 - Cadastrar outro funcionario\n");
                 printf("2 - Voltar\n");
                 scanf("%i", &Op);
@@ -344,7 +351,7 @@ void LancarHoras(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *
         //printf("\nSQL = %s\n", sql);
 
         if(mysql_affected_rows(&conexao) != 1){
-            printf("Erro: Nao foi possivel cadastrar as horas\n\n");
+            printf("\nErro: Nao foi possivel cadastrar as horas\n\n");
             printf("Pressione qualquer tecla para continuar...\n");
             getchar();
         }else{
@@ -459,7 +466,7 @@ void ExibirPeriodo(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD
 
     if(resp){
         system("clear");
-        printf("<<< RELACAO DE PERIDOS CADASTRADOS >>>\n\n");
+        printf("<<< RELACAO DE PERIODOS CADASTRADOS >>>\n\n");
 
         printf("CODIGO\t\t\t\tDATA INICIAL\t\t\t\tDATA FINAL \n");
         campos = mysql_fetch_fields(resp);
