@@ -29,9 +29,9 @@ typedef struct TipoControleHoras{
 
 void ConectaDB(MYSQL conexao);
 
-int Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos, int Op);
+int Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void MenuPrincipal();
+int MenuPrincipal();
 
 void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 

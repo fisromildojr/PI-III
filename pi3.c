@@ -15,7 +15,8 @@ void ConectaDB(MYSQL conexao){
 }
 */
 
-int Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos, int Op){
+int Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos){
+    int Op=0;
     system("clear");
     printf("\n\n");
     printf("\t     ******  ######  ######     ##   ########   ####### \n");
@@ -29,9 +30,9 @@ int Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *cam
     printf("\n\n\t   Seja bem vindo ao DESAFIO DO TERCEIRAO << SISTEMA ESPELHO PONTO >> \nAo aceitar  participar voce vera o sistema desenvolvido pelos alunos como\ndesafio para o Terceiro Período de TADS!");
     printf("\n\n\n\t(1)-Aceito\t   Ou precione qualquer tecla para sair...");
     printf("\n\nOpção ==> ");
-    __fpurge(stdin);
     scanf("%i", &Op);
-    
+    setbuf(stdin,NULL);
+
     if(Op==1)
         return Op;
  
@@ -39,7 +40,8 @@ int Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *cam
     
 }
 
-void MenuPrincipal(){
+int MenuPrincipal(){
+    int Op;
     system("clear");
     printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
     printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
@@ -62,6 +64,13 @@ void MenuPrincipal(){
     printf("2 - Listar Funcionarios Cadastrados\n");
     printf("3 - Lancar Horas Trabalhadas\n");
     printf("4 - Gerar Espelho Ponto\n");
+    printf("5 - Sair\n");
+
+    printf("\n--> ");
+    scanf("%i", &Op);
+    setbuf(stdin,NULL);
+
+    return Op;
 }
 
 void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos){
@@ -208,6 +217,11 @@ void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_
                 setbuf(stdin,NULL);
             }
         }
+
+        if (Op!=1){
+            break;
+        }
+
     }while(Op=1);
 
     mysql_close(&conexao);
@@ -361,6 +375,11 @@ void LancarHoras(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *
             scanf("%i", &Op);
             setbuf(stdin,NULL);
         }
+
+        if (Op!=1){
+            break;
+        }
+
     }while(Op=1);
 
 }
@@ -380,9 +399,10 @@ void GerarHolerite(){
 void ExibirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos){
     TipoFuncionario funcionario;
     char sql[500];
-    int i;
+    int i, Op=0;
 
-    strcpy(sql, "SELECT funcionario.id, funcionario.nome, cargo.nome FROM funcionario LEFT JOIN ocupa ON (ocupa.id_tab_funcionario = funcionario.id) LEFT JOIN cargo ON (ocupa.id_tab_cargo = cargo.id);");
+    
+    strcpy(sql, "SELECT funcionario.id, funcionario.nome FROM funcionario;");
     mysql_query(&conexao, sql);
 
     resp = mysql_store_result(&conexao);
@@ -391,7 +411,7 @@ void ExibirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_F
         system("clear");
         printf("<<< RELACAO DE FUNCIONARIO >>>\n\n");
 
-        printf("CODIGO\t\t\t\tNOME\t\t\t\t\tCARGO\n");
+        printf("CODIGO\t\tNOME\n");
         campos = mysql_fetch_fields(resp);
         /*for (i=0;i<mysql_num_fields(resp);i++) {
             printf("%s",(campos[i]).name);
@@ -404,47 +424,58 @@ void ExibirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_F
               {
                  for (i=0;i<mysql_num_fields(resp);i++)
                     if(linhas[i]==NULL)
-                        printf("\t\t\t\t");
+                        printf("\t\t");
                     else
-                        printf("%s\t\t\t\t",linhas[i]);
+                        printf("%s\t\t",linhas[i]);
                  printf("\n");
               }
     }
-   
 }
 
 void ExibirCargo(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos){
     char sql[500];
-    int i;
+    int i, Op=0;
 
-    strcpy(sql, "SELECT cargo.id, cargo.nome FROM cargo;");
-    mysql_query(&conexao, sql);
+    do{
+        strcpy(sql, "SELECT cargo.id, cargo.nome FROM cargo;");
+        mysql_query(&conexao, sql);
 
-    resp = mysql_store_result(&conexao);
+        resp = mysql_store_result(&conexao);
 
-    if(resp){
-        system("clear");
-        printf("<<< RELACAO DE CARGOS >>>\n\n");
+        if(resp){
+            system("clear");
+            printf("<<< RELACAO DE CARGOS >>>\n\n");
 
-        printf("CODIGO\t\t\t\tNOME\n");
-        campos = mysql_fetch_fields(resp);
-        /*for (i=0;i<mysql_num_fields(resp);i++) {
-            printf("%s",(campos[i]).name);
-            if (mysql_num_fields(resp)>1)
-                printf("\t\t\t");
-            }*/
-            printf("\n");
+            printf("CODIGO\t\t\t\tNOME\n");
+            campos = mysql_fetch_fields(resp);
+            /*for (i=0;i<mysql_num_fields(resp);i++) {
+                printf("%s",(campos[i]).name);
+                if (mysql_num_fields(resp)>1)
+                    printf("\t\t\t");
+                }*/
+                printf("\n");
 
-            while ((linhas=mysql_fetch_row(resp)) != NULL)
-              {
-                 for (i=0;i<mysql_num_fields(resp);i++)
-                    if(linhas[i]==NULL)
-                        printf("\t\t\t\t");
-                    else
-                        printf("%s\t\t\t\t",linhas[i]);
-                 printf("\n");
-              }
-    }
+                while ((linhas=mysql_fetch_row(resp)) != NULL)
+                  {
+                     for (i=0;i<mysql_num_fields(resp);i++)
+                        if(linhas[i]==NULL)
+                            printf("\t\t\t\t");
+                        else
+                            printf("%s\t\t\t\t",linhas[i]);
+                     printf("\n");
+                  }
+        }else{
+            printf("A consulta nao retornou nenhum resultado...\n");
+            printf("1 - Tentar novamente\n");
+            printf("2 - Voltar\n");
+            scanf("%i", &Op);
+            setbuf(stdin,NULL);
+        }
+
+        if (Op!=1){
+            break;
+        }
+    }while(Op=1);
 }
 
 void ExibirEspelho(){
@@ -456,35 +487,47 @@ void ExibirHolerite(){
 }
 
 void ExibirPeriodo(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos){
-    int i;
+    int i, Op=0;
     char sql[500];
 
-    strcpy(sql, "SELECT periodo.id, periodo.datainicial, periodo.datafinal FROM periodo;");
-    mysql_query(&conexao, sql);
+    do{
+        strcpy(sql, "SELECT periodo.id, periodo.datainicial, periodo.datafinal FROM periodo;");
+        mysql_query(&conexao, sql);
 
-    resp = mysql_store_result(&conexao);
+        resp = mysql_store_result(&conexao);
 
-    if(resp){
-        system("clear");
-        printf("<<< RELACAO DE PERIODOS CADASTRADOS >>>\n\n");
+        if(resp){
+            system("clear");
+            printf("<<< RELACAO DE PERIODOS CADASTRADOS >>>\n\n");
 
-        printf("CODIGO\t\t\t\tDATA INICIAL\t\t\t\tDATA FINAL \n");
-        campos = mysql_fetch_fields(resp);
-        /*for (i=0;i<mysql_num_fields(resp);i++) {
-            printf("%s",(campos[i]).name);
-            if (mysql_num_fields(resp)>1)
-                printf("\t\t\t");
-            }*/
-            printf("\n");
+            printf("CODIGO\t\t\t\tDATA INICIAL\t\t\t\tDATA FINAL \n");
+            campos = mysql_fetch_fields(resp);
+            /*for (i=0;i<mysql_num_fields(resp);i++) {
+                printf("%s",(campos[i]).name);
+                if (mysql_num_fields(resp)>1)
+                    printf("\t\t\t");
+                }*/
+                printf("\n");
 
-            while ((linhas=mysql_fetch_row(resp)) != NULL)
-              {
-                 for (i=0;i<mysql_num_fields(resp);i++)
-                    if(linhas[i]==NULL)
-                        printf("\t\t\t\t");
-                    else
-                        printf("%s\t\t\t\t",linhas[i]);
-                 printf("\n");
-              }
-    }
+                while ((linhas=mysql_fetch_row(resp)) != NULL)
+                  {
+                     for (i=0;i<mysql_num_fields(resp);i++)
+                        if(linhas[i]==NULL)
+                            printf("\t\t\t\t");
+                        else
+                            printf("%s\t\t\t\t",linhas[i]);
+                     printf("\n");
+                  }
+        }else{
+                printf("A consulta nao retornou nenhum resultado...\n");
+                printf("1 - Tentar novamente\n");
+                printf("2 - Voltar\n");
+                scanf("%i", &Op);
+                setbuf(stdin,NULL);
+            }
+
+            if (Op!=1){
+                break;
+            }
+    }while(Op=1);
 }
