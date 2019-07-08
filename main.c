@@ -21,32 +21,37 @@ int main(int argc, char const *argv[]){
         mysql_close(&conexao);
         return 0;
     }else{
-        int Op;
-        if(Cabecalho(conexao, resp, linhas, campos, Op)){
+        int Op, Opc;
+        if(Cabecalho(conexao, resp, linhas, campos)){
+            do{
+                Op=MenuPrincipal();
 
-            MenuPrincipal();
-            printf("\n--> ");
-            scanf("%i", &Op);
-            setbuf(stdin,NULL);
+                switch(Op){
+                    case 1:
+                        InserirFuncionario(conexao, resp, linhas, campos);
+                    break;
+                    case 2:
+                        ExibirFuncionario(conexao, resp, linhas, campos);
+                        printf("\n1 - Voltar\n");
+                        scanf("%i", &Opc);
+                        setbuf(stdin,NULL);                          
+                    break;
+                    case 3:
+                        LancarHoras(conexao, resp, linhas, campos);
+                    break;
+                    case 4:
+                        
+                    break;
+                    case 5:
+                        return 0;
+                    break;
+                    default:
+                        printf("Opcao invalida...\n");
+                    break;
+                }
+            
+            }while(1);
 
-            switch(Op){
-                case 1:
-                    //Cabecalho(conexao, resp, linhas, campos);
-                    InserirFuncionario(conexao, resp, linhas, campos);
-                break;
-                case 2:
-                    ExibirFuncionario(conexao, resp, linhas, campos);
-                break;
-                case 3:
-                    LancarHoras(conexao, resp, linhas, campos);
-                break;
-                case 4:
-                    
-                break;
-                default:
-                    printf("Opcao invalida...\n");
-                break;
-            }
         }else{
             system("exit");
         }
