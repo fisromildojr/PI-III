@@ -25,6 +25,67 @@ void Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *ca
     mysql_close(&conexao);
 }
 
+
+void CABECALHO_1(int Op){
+        //setlocale(LC_ALL,"");
+        int Op;
+        system("clear");
+        printf("\t     ******  ######  ######     ##   ########   ####### \n");
+        printf("\t     ******  ######  ######     ##   ##        ##      #\n");
+        printf("\t     ######  #######            ##   ##       ##        \n");
+        printf("\t     ######  ######             ##   ######   ##        \n");
+        printf("\t     ######  ######  ######     ##   ##       ##        \n");
+        printf("\t     ######  ######  ######     ##   ##       ##    ####\n");
+        printf("\t     ######  ######             ##   ##        ##     ##\n");
+        printf("\t     ######  ######             ##   ##         #######\n");
+
+
+        printf("\n\n\t   Seja bem vindo ao DESAFIO DO TERCEIRAO.  SISTEMA ESPELHO PONTO \nAo aceitar  participar voce vera o sistema desenvolvido pelos alunos como\ndesafio para o Terceiro Período de TADS!");
+        printf("\n\n\n\t(1)-Aceito\t   Ou precione qualquer tecla para sair...");
+        printf("\n\nOpção ==> ");
+        __fpurge(stdin);
+         scanf("%i", &Op);
+    
+        if(Op==1){
+            return Op;
+        }
+            return 3;
+}
+
+void CABECALHO_2(int Op){
+        
+        system("clear");
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx       SISTEMA      xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx  ESPELHO DE PONTO  xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n" );
+        printf(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx                    xxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n\n\n" );
+        
+        printf("              Digite as opção abaixo para prosseguir no sistema\n");
+        printf("            (1) - acessar o menu  (2) - Cadastra senha  (3) - Sair \n" );
+        scanf("%i", &Op);
+
+        if(Op==1){
+            return Op;
+        }
+        else 
+        if(Op==2){
+            return Op;
+        }
+            return 3;
+}
+
+
 void MenuPrincipal(){
     system("clear");
     printf("<<< ESCOLHA UMA OPCAO DO MENU >>>\n\n");

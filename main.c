@@ -26,6 +26,10 @@ int main(int argc, char const *argv[]){
 
         //Cabecalho(conexao, resp, linhas, campos);
 
+        int acesso=3;
+        CABECALHO_1 (acesso);
+        CABECALHO_2 (acesso);
+        
         MenuPrincipal();
         scanf("%i", &Op);
         setbuf(stdin,NULL);

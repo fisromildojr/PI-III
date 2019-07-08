@@ -3,6 +3,11 @@
 #include <string.h>
 #include <mysql/mysql.h>
 
+
+void  CABECALHO_1(); //cabecalho
+
+void  CABECALHO_2(); //cabecalho
+
 typedef struct TipoFuncionario{
 	char Nome[100];
 	float Descontos;
