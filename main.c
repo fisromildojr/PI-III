@@ -82,7 +82,7 @@ int main(int argc, char const *argv[]){
             }
         }else{
             system("exit");
->>>>>>> fb8889817962fd098943aea76bc99bb2e7523343
+
         }
     }
 
