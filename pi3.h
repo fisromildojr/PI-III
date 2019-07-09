@@ -6,7 +6,7 @@
 typedef struct TipoFuncionario{
 	char Nome[100];
 	float Descontos;
-	char Telefone[15];// tel
+	char Telefone[15];
 	char Endereco[200];
 	char Bairro[30];
 	char Cidade[30];
@@ -20,6 +20,7 @@ typedef struct TipoControleHoras{
 	char HoraSaida1[10];
 	char HoraEntrada2[10];
 	char HoraSaida2[10];
+	char HorasTrabalhadas[10];
 	char Horas100[10];
 	char Horas50[10];
 	char AdcNoturno[10];	
@@ -37,18 +38,10 @@ void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_
 
 void LancarHoras(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void CadastrarCartaoPonto();
-
-void GerarEspelho();
-
-void GerarHolerite();
+void GerarEspelho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
 void ExibirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
 void ExibirCargo(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
-
-void ExibirEspelho();
-
-void ExibirHolerite();
 
 void ExibirPeriodo(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
