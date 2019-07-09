@@ -6,8 +6,7 @@
 #include "pi3.h"
 
 int main(int argc, char const *argv[]){
-	//Início do desenvolvimento do projeto!!!
-	//Conexão com o D  
+
 	MYSQL conexao;
     MYSQL_RES *resp;
     MYSQL_ROW linhas;
@@ -21,41 +20,44 @@ int main(int argc, char const *argv[]){
         mysql_close(&conexao);
         return 0;
     }else{
-        
-        int Op;
 
-        //Cabecalho(conexao, resp, linhas, campos);
+        int Op, Opc;
+        if(Cabecalho(conexao, resp, linhas, campos)){
+            do{
+                Op=MenuPrincipal();
 
-        int acesso=3;
-        CABECALHO_1 (acesso);
-        CABECALHO_2 (acesso);
-        
-        MenuPrincipal();
-        scanf("%i", &Op);
-        setbuf(stdin,NULL);
+                switch(Op){
+                    case 1:
+                        InserirFuncionario(conexao, resp, linhas, campos);
+                    break;
+                    case 2:
+                        ExibirFuncionario(conexao, resp, linhas, campos);
+                        printf("\n1 - Voltar\n");
+                        scanf("%i", &Opc);
+                        setbuf(stdin,NULL);                          
+                    break;
+                    case 3:
+                        LancarHoras(conexao, resp, linhas, campos);
+                    break;
+                    case 4:
+                        GerarEspelho(conexao, resp, linhas, campos);
+                        printf("\n1 - Voltar\n");
+                        scanf("%i", &Opc);
+                        setbuf(stdin,NULL);
+                    break;
+                    case 5:
+                        return 0;
+                    break;
+                    default:
+                        printf("Opcao invalida...\n");
+                    break;
+                }
+            
+            }while(1);
 
-            printf("\n%d\n", Op);
-
-        switch(Op){
-            case 1:
-                //Cabecalho(conexao, resp, linhas, campos);
-                InserirFuncionario(conexao, resp, linhas, campos);
-
-            break;
-            case 2:
-
-            break;
-            case 3:
-
-            break;
-            case 4:
-
-            break;
-            default:
-                printf("Opcao invalida...\n");
-            break;
+        }else{
+            system("exit");
         }
-
     }
 
 	return 0;

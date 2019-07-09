@@ -3,37 +3,45 @@
 #include <string.h>
 #include <mysql/mysql.h>
 
-
-void  CABECALHO_1(); //cabecalho
-
-void  CABECALHO_2(); //cabecalho
-
 typedef struct TipoFuncionario{
 	char Nome[100];
 	float Descontos;
-	char Telefone[15];// tel
+	char Telefone[15];
 	char Endereco[200];
 	char Bairro[30];
 	char Cidade[30];
 	char UF[3];
 } TipoFuncionario;
 
+typedef struct TipoControleHoras{
+	char TipoDia[2];
+	char Data[12];
+	char HoraEntrada1[10];
+	char HoraSaida1[10];
+	char HoraEntrada2[10];
+	char HoraSaida2[10];
+	char HorasTrabalhadas[10];
+	char Horas100[10];
+	char Horas50[10];
+	char AdcNoturno[10];	
+	char IdFuncionario[10];
+	char IdPeriodo[10];
+} TipoControleHoras;
+
 void ConectaDB(MYSQL conexao);
 
-void Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
+int Cabecalho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void MenuPrincipal();
+int MenuPrincipal();
 
 void InserirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void CadastrarCartaoPonto();
+void LancarHoras(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void GerarEspelho();
+void GerarEspelho(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void GerarHolerite();
+void ExibirFuncionario(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void ExibirFuncionario();
+void ExibirCargo(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
 
-void ExibirEspelho();
-
-void ExibirHolerite();
+void ExibirPeriodo(MYSQL conexao, MYSQL_RES *resp, MYSQL_ROW linhas, MYSQL_FIELD *campos);
